@@ -49,7 +49,7 @@
             </HBox>
             <MFXScrollPane hbarPolicy="NEVER" fx:id="messagesScrollPane">
                <content>
-                  <VBox id="messages" prefHeight="427.0" prefWidth="451.0">
+                  <VBox fx:id="messagesVBox" id="messages" prefHeight="427.0" prefWidth="451.0">
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0" styleClass="time">
                            <children>

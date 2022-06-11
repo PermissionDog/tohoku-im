@@ -15,4 +15,5 @@ public class Constant {
     public static final String DEFAULT_FRIENDS = DEFAULT_FILE_PATH + "friends.json";
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-M-d HH:mm:ss");
+    public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
 }

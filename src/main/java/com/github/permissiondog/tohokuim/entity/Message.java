@@ -1,15 +1,13 @@
 package com.github.permissiondog.tohokuim.entity;
 
+import com.github.permissiondog.tohokuim.entity.enumeration.MessageDirection;
+
 import java.time.LocalDateTime;
 
 public class Message {
     private LocalDateTime sendTime;
     private String message;
-    /**
-     *  1: 接收的消息
-     *  2: 发送的消息
-     */
-    private int direction;
+    private MessageDirection direction;
 
     public LocalDateTime getSendTime() {
         return sendTime;
@@ -27,11 +25,11 @@ public class Message {
         this.message = message;
     }
 
-    public int getDirection() {
+    public MessageDirection getDirection() {
         return direction;
     }
 
-    public void setDirection(int direction) {
+    public void setDirection(MessageDirection direction) {
         this.direction = direction;
     }
 }

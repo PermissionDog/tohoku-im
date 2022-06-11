@@ -14,6 +14,10 @@ MFXTextField {
     -fx-font-family: 'Microsoft YaHei UI';
 }
 
+#content {
+    -fx-background-color: #fff;
+}
+
 #name {
     -fx-font-size: 20px;
 }
@@ -21,7 +25,7 @@ MFXTextField {
     -fx-pref-height: 20px;
 }
 #messages {
-    -fx-background-color: red;
+    // -fx-background-color: red;
     -fx-font-size: 16px;
 }
 .received-msg {
@@ -34,12 +38,12 @@ MFXTextField {
     -fx-alignment: center;
 }
 #messages > HBox {
-    -fx-background-color: pink;
-    -fx-pref-height: 50px;
+    // -fx-background-color: pink;
+    -fx-pref-height: 30px;
 }
 #input {
     -fx-pref-height: 100px;
-    -fx-background-color: yellow;
+    // -fx-background-color: yellow;
     -fx-spacing: 15px;
 }
 #content {
