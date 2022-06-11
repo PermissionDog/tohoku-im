@@ -10,4 +10,5 @@ public class Constant {
     public static final String DEFAULT_FILE_PATH = "/com/github/permissiondog/tohokuim/data/";
     public static final String DEFAULT_CONFIG = DEFAULT_FILE_PATH + "config.json";
     public static final String DEFAULT_PROFILE = DEFAULT_FILE_PATH + "profile.json";
+    public static final String DEFAULT_FRIENDS = DEFAULT_FILE_PATH + "friends.json";
 }

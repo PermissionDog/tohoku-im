@@ -56,9 +56,9 @@ public abstract class MultiDataDaoImpl<T extends Identifiable> extends BaseDaoIm
     }
 
     @Override
-    public T remove(T value) {
+    public T remove(UUID id) {
         synchronized (this) {
-            return data.remove(value.getUUID());
+            return data.remove(id);
         }
     }
 

@@ -43,7 +43,12 @@ public class TohokuIMApplication extends Application {
         mainController.init();
         mainStage.show();
     }
-
+    private static void writeResource(String resource, String fileName) {
+        if (Files.notExists(Paths.get(fileName))) {
+            logger.debug("创建默认文件 {}", fileName);
+            FileUtil.writeResource(resource, fileName);
+        }
+    }
     private static void initFiles() {
 
         Path dataPath = Path.of(Constant.DATA_PATH);
@@ -56,9 +61,8 @@ public class TohokuIMApplication extends Application {
                 System.exit(1);
             }
         }
-        if (Files.notExists(Paths.get(Constant.PROFILE_FILE))) {
-            FileUtil.writeResource(Constant.DEFAULT_PROFILE, Constant.PROFILE_FILE);
-        }
+        writeResource(Constant.DEFAULT_PROFILE, Constant.PROFILE_FILE);
+        writeResource(Constant.DEFAULT_FRIENDS, Constant.FRIENDS_FILE);
     }
 
     public static void main(String[] args) {
