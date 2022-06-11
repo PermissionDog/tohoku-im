@@ -5,6 +5,7 @@ import java.util.UUID;
 
 public class Friend implements Identifiable {
     private UUID uuid;
+    private String name;
     private String signature;
     private List<Message> messages;
 
@@ -14,6 +15,14 @@ public class Friend implements Identifiable {
 
     public void setUUID(UUID uuid) {
         this.uuid = uuid;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSignature() {

@@ -10,11 +10,12 @@ import java.util.*;
 
 public abstract class MultiDataDaoImpl<T extends Identifiable> extends BaseDaoImpl<T> implements MultiDataDao<T> {
 
-    private final Map<UUID, T> data = new HashMap<>();
+    private Map<UUID, T> data;
     private final List<Observer> observerList = new LinkedList<>();
 
     @Override
     public void load() {
+        data = new HashMap<>();
         var json = FileUtil.readFile(getFileName());
         Collection<T> dataList = GsonUtil.gson.fromJson(json, getType());
         dataList.forEach(t -> data.put(t.getUUID(), t));
