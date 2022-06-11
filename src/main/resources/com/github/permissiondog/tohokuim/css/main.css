@@ -1,0 +1,47 @@
+.toggle-list {
+    -fx-spacing: 10px;
+}
+.toggle-list > MFXRectangleToggleNode {
+    -fx-pref-width: 150px;
+    -fx-min-height: 50px;
+}
+MFXButton {
+    -fx-font-size: 16px;
+    -fx-font-family: 'Microsoft YaHei UI';
+}
+MFXTextField {
+    -fx-font-size: 15px;
+    -fx-font-family: 'Microsoft YaHei UI';
+}
+
+#name {
+    -fx-font-size: 20px;
+}
+#info {
+    -fx-pref-height: 20px;
+}
+#messages {
+    -fx-background-color: red;
+    -fx-font-size: 16px;
+}
+.received-msg {
+    -fx-alignment: center-left;
+}
+.sent-msg {
+    -fx-alignment: center-right;
+}
+.time {
+    -fx-alignment: center;
+}
+#messages > HBox {
+    -fx-background-color: pink;
+    -fx-pref-height: 50px;
+}
+#input {
+    -fx-pref-height: 100px;
+    -fx-background-color: yellow;
+    -fx-spacing: 15px;
+}
+#content {
+    // visibility: hidden;
+}

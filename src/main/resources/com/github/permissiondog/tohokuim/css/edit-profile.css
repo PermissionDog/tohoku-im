@@ -1,0 +1,10 @@
+.text  {
+    -fx-font-size: 18pt;
+}
+.vbox {
+    -fx-spacing: 30;
+    -fx-background-color: #ffffff;
+}
+.mfx-button {
+    -mfx-button-type: RAISED;
+}

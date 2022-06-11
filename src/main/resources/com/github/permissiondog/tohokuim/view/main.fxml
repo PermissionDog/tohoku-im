@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXRectangleToggleNode?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="436.0" prefWidth="386.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.github.permissiondog.tohokuim.controller.MainController">
+   <children>
+      <MFXScrollPane hbarPolicy="NEVER" fx:id="friendsScrollPane">
+         <content>
+            <VBox fx:id="friendsVBox" id="friends" alignment="TOP_CENTER" maxHeight="624.0" prefHeight="572.0" prefWidth="186.0" styleClass="toggle-list">
+               <children>
+                  <MFXRectangleToggleNode minHeight="57.0" prefHeight="57.0" prefWidth="136.0">
+                  </MFXRectangleToggleNode>
+                  <MFXRectangleToggleNode minHeight="57.0" prefHeight="57.0" prefWidth="186.0" />
+                  <MFXRectangleToggleNode minHeight="57.0" prefHeight="57.0" prefWidth="186.0" />
+                  <MFXRectangleToggleNode minHeight="57.0" prefHeight="57.0" prefWidth="186.0" />
+                  <MFXRectangleToggleNode minHeight="57.0" prefHeight="57.0" prefWidth="186.0" />
+                  <MFXRectangleToggleNode minHeight="57.0" prefHeight="57.0" prefWidth="186.0" />
+                  <MFXRectangleToggleNode minHeight="57.0" prefHeight="57.0" prefWidth="186.0" />
+                  <MFXRectangleToggleNode minHeight="57.0" prefHeight="57.0" prefWidth="186.0" />
+                  <MFXRectangleToggleNode minHeight="57.0" prefHeight="57.0" prefWidth="186.0" />
+                  <MFXRectangleToggleNode minHeight="57.0" prefHeight="57.0" prefWidth="186.0" />
+                  <MFXRectangleToggleNode minHeight="57.0" prefHeight="57.0" prefWidth="186.0" />
+               </children>
+            </VBox>
+         </content>
+      </MFXScrollPane>
+      <VBox id="content" layoutX="189.0" layoutY="7.0" prefHeight="564.0" prefWidth="473.0">
+         <children>
+            <HBox id="info" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="334.0">
+                     <children>
+                        <Label fx:id="nameLabel" id="name" prefHeight="35.0" prefWidth="98.0" text="名字" />
+                        <Label fx:id="signatureLabel" id="signature" prefHeight="35.0" prefWidth="317.0" text="签名签名签名签名签名签名签名签名签名签名签名签名" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
+            </HBox>
+            <MFXScrollPane hbarPolicy="NEVER" fx:id="messagesScrollPane">
+               <content>
+                  <VBox id="messages" prefHeight="427.0" prefWidth="451.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0" styleClass="time">
+                           <children>
+                              <Label text="2000-1-1 21:00" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" styleClass="received-msg">
+                           <children>
+                              <Label text="接收到的消息" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" styleClass="sent-msg">
+                           <children>
+                              <Label text="发送的消息" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" styleClass="received-msg">
+                           <children>
+                              <Label text="接收到的消息" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" styleClass="received-msg">
+                           <children>
+                              <Label text="接收到的消息" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </content>
+            </MFXScrollPane>
+            <HBox id="input" alignment="CENTER_LEFT" prefHeight="345.0" prefWidth="473.0">
+               <children>
+                  <MFXTextField floatMode="DISABLED" prefHeight="53.0" prefWidth="349.0">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin></MFXTextField>
+                  <MFXButton prefHeight="51.0" prefWidth="89.0" text="发送">
+                  </MFXButton>
+               </children></HBox>
+         </children></VBox>
+   </children>
+</AnchorPane>

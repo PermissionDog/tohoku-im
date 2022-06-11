@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import java.lang.String?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="vbox" stylesheets="@../css/edit-profile.css" fx:controller="com.github.permissiondog.tohokuim.controller.EditProfileController" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MFXTextField fx:id="nameTextField" floatingText="名称" prefHeight="51.0" prefWidth="175.0">
+         <styleClass>
+            <String fx:value="text" />
+            <String fx:value="row" />
+         </styleClass>
+      </MFXTextField>
+      <MFXTextField fx:id="signatureTextField" floatingText="个性签名" prefHeight="51.0" prefWidth="175.0">
+         <styleClass>
+            <String fx:value="text" />
+            <String fx:value="row" />
+         </styleClass>
+      </MFXTextField>
+      <MFXButton onAction="#onConfirm" rippleRadius="2.0" rippleRadiusMultiplier="4.0" text="确认" />
+   </children>
+</VBox>
