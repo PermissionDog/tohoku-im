@@ -7,6 +7,7 @@ import com.github.permissiondog.tohokuim.entity.Friend;
 import com.github.permissiondog.tohokuim.entity.Message;
 import com.github.permissiondog.tohokuim.entity.enumeration.MessageDirection;
 import com.github.permissiondog.tohokuim.net.BroadcastMessage;
+import com.github.permissiondog.tohokuim.net.BroadcastThread;
 import com.github.permissiondog.tohokuim.net.FriendDiscoverThread;
 import com.github.permissiondog.tohokuim.service.MessageService;
 import com.github.permissiondog.tohokuim.service.exception.NetworkException;
@@ -133,6 +134,6 @@ public class MessageServiceImpl implements MessageService {
         new Thread(new FriendDiscoverThread()).start();
     }
     private void initBroadCast() {
-
+        new Thread(new BroadcastThread()).start();
     }
 }

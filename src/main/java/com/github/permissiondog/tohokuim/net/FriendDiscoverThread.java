@@ -36,9 +36,17 @@ public class FriendDiscoverThread implements Runnable {
                 var jsonReader = GsonUtil.gson.newJsonReader(reader);
                 BroadcastMessage broadcastMessage = GsonUtil.gson.fromJson(jsonReader, BroadcastMessage.class);
 
-                if (FriendServiceImpl.getInstance().get(broadcastMessage.getUUID()).isPresent()) {
+                final var uuid = broadcastMessage.getUUID();
+                logger.trace("接收到 UUID {}", uuid);
+                if (uuid.equals(Config.getInstance().getUUID())) {
+                    logger.trace("接收到自己的 UUID");
                     continue;
                 }
+                if (FriendServiceImpl.getInstance().get(uuid).isPresent()) {
+                    logger.trace("接收到重复的 UUID");
+                    continue;
+                }
+                logger.info("发现新朋友 {} ({})", broadcastMessage.getName(), uuid);
                 var friend = new Friend();
                 friend.setUUID(broadcastMessage.getUUID());
                 friend.setName(broadcastMessage.getName());

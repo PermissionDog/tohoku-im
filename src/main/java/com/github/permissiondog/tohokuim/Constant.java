@@ -18,4 +18,5 @@ public class Constant {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-M-d HH:mm:ss");
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss");
+    public static final long BROADCAST_INTERVAL = 5000;
 }
