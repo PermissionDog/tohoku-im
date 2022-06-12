@@ -10,5 +10,6 @@ module com.github.permissiondog.tohokuim {
     opens com.github.permissiondog.tohokuim.controller to javafx.fxml;
     opens com.github.permissiondog.tohokuim.entity to com.google.gson;
     opens com.github.permissiondog.tohokuim.net to com.google.gson;
+    opens com.github.permissiondog.tohokuim.net.event to com.google.gson;
     exports com.github.permissiondog.tohokuim;
 }

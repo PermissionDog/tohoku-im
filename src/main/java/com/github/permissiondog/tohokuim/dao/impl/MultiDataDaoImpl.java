@@ -60,7 +60,11 @@ public abstract class MultiDataDaoImpl<T extends Identifiable> extends BaseDaoIm
     @Override
     public boolean remove(UUID id) {
         synchronized (this) {
-            return data.remove(id) != null;
+            if (data.remove(id) == null) {
+                return false;
+            }
+            save();
+            return true;
         }
     }
 
@@ -71,6 +75,7 @@ public abstract class MultiDataDaoImpl<T extends Identifiable> extends BaseDaoIm
                 value.setUUID(UUID.randomUUID());
             }
             data.put(value.getUUID(), value);
+            save();
             notifyOnAddListeners(value);
             return value;
         }

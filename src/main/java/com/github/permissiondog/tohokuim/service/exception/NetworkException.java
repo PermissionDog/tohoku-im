@@ -6,7 +6,8 @@ public class NetworkException extends RuntimeException{
         this.msg = msg;
     }
 
-    public String getMsg() {
+    @Override
+    public String getMessage() {
         return msg;
     }
 }

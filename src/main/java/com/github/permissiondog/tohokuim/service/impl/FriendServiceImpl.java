@@ -5,9 +5,9 @@ import com.github.permissiondog.tohokuim.dao.impl.FriendDaoImpl;
 import com.github.permissiondog.tohokuim.entity.Friend;
 import com.github.permissiondog.tohokuim.service.FriendService;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.net.InetAddress;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
 public class FriendServiceImpl implements FriendService {
@@ -56,5 +56,16 @@ public class FriendServiceImpl implements FriendService {
     @Override
     public void registerOnAddListener(Consumer<Friend> listener) {
         FriendDaoImpl.getInstance().registerOnAddListener(listener);
+    }
+
+    Map<UUID, InetAddress> addressMap = new ConcurrentHashMap<>();
+    @Override
+    public void updateFriendAddress(UUID friendID, InetAddress address) {
+        addressMap.put(friendID, address);
+    }
+
+    @Override
+    public Optional<InetAddress> getAddress(UUID friendID) {
+        return Optional.ofNullable(addressMap.get(friendID));
     }
 }

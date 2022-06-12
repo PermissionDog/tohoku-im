@@ -42,6 +42,7 @@ public class FriendDiscoverThread implements Runnable {
                     logger.trace("接收到自己的 UUID");
                     continue;
                 }
+                FriendServiceImpl.getInstance().updateFriendAddress(uuid, broadcastMessage.getIp());
                 if (FriendServiceImpl.getInstance().get(uuid).isPresent()) {
                     logger.trace("接收到重复的 UUID");
                     continue;

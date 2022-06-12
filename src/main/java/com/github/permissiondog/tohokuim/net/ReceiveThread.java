@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -28,8 +29,12 @@ public class ReceiveThread implements Runnable{
     public void run() {
 
         try {
-            var r = GsonUtil.gson.newJsonReader(new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
-            var type = r.nextString();
+            logger.trace("获取 InputStream");
+            var in = new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8);
+            logger.trace("创建 Reader");
+            var r = GsonUtil.gson.newJsonReader(in);
+            logger.trace("读取消息类型");
+            String type = GsonUtil.gson.fromJson(r, String.class);
             logger.trace("接收消息 {}", type);
             switch (type) {
                 case ReceiveMessageEvent.NAME -> handle(GsonUtil.gson.fromJson(r, ReceiveMessageEvent.class));
@@ -40,17 +45,26 @@ public class ReceiveThread implements Runnable{
         }
     }
     private void reply(String msg) throws IOException {
+        logger.trace("回复 {}", msg);
         var writer = new OutputStreamWriter(socket.getOutputStream(), StandardCharsets.UTF_8);
+        logger.trace("创建 writer");
         GsonUtil.gson.toJson(msg, writer);
+        writer.flush();
+        logger.trace("写完成");
     }
     private void handle(ReceiveMessageEvent event) throws IOException {
+        logger.trace("处理 ReceiveMessageEvent");
         var msg = new Message();
         msg.setUUID(event.getUUID());
         msg.setMessage(event.getMessage());
         msg.setSendTime(event.getSendTime());
         msg.setDirection(MessageDirection.Received);
+        msg.setSession(event.getSender());
+
+        logger.trace("添加消息");
         MessageServiceImpl.getInstance().add(msg);
 
+        logger.trace("回复消息");
         reply("ok");
     }
 }

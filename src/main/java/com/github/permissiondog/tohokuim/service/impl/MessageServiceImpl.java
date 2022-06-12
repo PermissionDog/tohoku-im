@@ -9,11 +9,13 @@ import com.github.permissiondog.tohokuim.entity.enumeration.MessageDirection;
 import com.github.permissiondog.tohokuim.net.BroadcastMessage;
 import com.github.permissiondog.tohokuim.net.BroadcastThread;
 import com.github.permissiondog.tohokuim.net.FriendDiscoverThread;
+import com.github.permissiondog.tohokuim.net.event.ReceiveMessageEvent;
 import com.github.permissiondog.tohokuim.service.MessageService;
 import com.github.permissiondog.tohokuim.service.exception.NetworkException;
 import com.github.permissiondog.tohokuim.service.exception.NoSuchFriendException;
 import com.github.permissiondog.tohokuim.net.ReceiveThread;
 import com.github.permissiondog.tohokuim.util.GsonUtil;
+import com.github.permissiondog.tohokuim.util.TcpUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -91,15 +93,31 @@ public class MessageServiceImpl implements MessageService {
         msg.setSendTime(LocalDateTime.now());
         msg.setDirection(MessageDirection.Sent);
         msg.setMessage(body);
+        msg.setSession(target);
+        msg.setUUID(UUID.randomUUID());
 
         sendMessage(msg);
+        msg = add(msg);
 
 
         return msg;
     }
 
     private void sendMessage(Message msg) throws NetworkException {
+        var ip = FriendServiceImpl.getInstance()
+                .getAddress(msg.getSession())
+                .orElseThrow(() -> new NetworkException("找不到好友 IP 地址"));
+        var messageEvent = new ReceiveMessageEvent();
+        messageEvent.setUUID(msg.getUUID());
+        messageEvent.setSendTime(msg.getSendTime());
+        messageEvent.setSender(Config.getInstance().getUUID());
+        messageEvent.setMessage(msg.getMessage());
 
+        var type = GsonUtil.gson.toJson(ReceiveMessageEvent.NAME);
+        var json = GsonUtil.gson.toJson(messageEvent);
+        if (!TcpUtil.sendMessage(ip, type + json)) {
+            throw new NetworkException("好友不在线");
+        }
     }
 
     public void initNet() throws NetworkException {

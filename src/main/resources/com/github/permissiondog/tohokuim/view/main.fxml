@@ -82,11 +82,11 @@
             </MFXScrollPane>
             <HBox id="input" alignment="CENTER_LEFT" prefHeight="345.0" prefWidth="473.0">
                <children>
-                  <MFXTextField floatMode="DISABLED" prefHeight="53.0" prefWidth="349.0">
+                  <MFXTextField fx:id="messageTextField" floatMode="DISABLED" prefHeight="53.0" prefWidth="349.0">
                      <HBox.margin>
                         <Insets left="5.0" />
                      </HBox.margin></MFXTextField>
-                  <MFXButton prefHeight="51.0" prefWidth="89.0" text="发送">
+                  <MFXButton onAction="#onSend" prefHeight="51.0" prefWidth="89.0" text="发送">
                   </MFXButton>
                </children></HBox>
          </children></VBox>
