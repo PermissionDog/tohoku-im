@@ -3,19 +3,24 @@ package com.github.permissiondog.tohokuim.service.impl;
 import com.github.permissiondog.tohokuim.Config;
 import com.github.permissiondog.tohokuim.dao.Observer;
 import com.github.permissiondog.tohokuim.dao.impl.MessageDaoImpl;
+import com.github.permissiondog.tohokuim.entity.Friend;
 import com.github.permissiondog.tohokuim.entity.Message;
 import com.github.permissiondog.tohokuim.entity.enumeration.MessageDirection;
+import com.github.permissiondog.tohokuim.net.BroadcastMessage;
+import com.github.permissiondog.tohokuim.net.FriendDiscoverThread;
 import com.github.permissiondog.tohokuim.service.MessageService;
 import com.github.permissiondog.tohokuim.service.exception.NetworkException;
 import com.github.permissiondog.tohokuim.service.exception.NoSuchFriendException;
 import com.github.permissiondog.tohokuim.net.ReceiveThread;
+import com.github.permissiondog.tohokuim.util.GsonUtil;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.net.InetSocketAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.io.InputStreamReader;
+import java.net.*;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -121,11 +126,11 @@ public class MessageServiceImpl implements MessageService {
             }).start();
         } catch (IOException e) {
             logger.fatal("监听端口失败", e);
-            throw new NetworkException("");
+            throw new NetworkException("无法监听消息接收端口");
         }
     }
     private void initFriendDiscover() {
-        
+        new Thread(new FriendDiscoverThread()).start();
     }
     private void initBroadCast() {
 
