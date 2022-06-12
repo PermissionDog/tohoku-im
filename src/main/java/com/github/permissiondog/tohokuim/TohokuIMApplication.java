@@ -42,6 +42,7 @@ public class TohokuIMApplication extends Application {
         mainStage.setScene(mainScene);
         MainController mainController = mainStageLoader.getController();
         mainController.init();
+        mainStage.setOnCloseRequest(event -> System.exit(0));
         mainStage.show();
     }
     private static void writeResource(String resource, String fileName) {
