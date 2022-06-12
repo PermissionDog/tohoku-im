@@ -135,6 +135,7 @@ public class MessageServiceImpl implements MessageService {
                 while (!serverSocket.isClosed()) {
                     try {
                         socket = serverSocket.accept();
+                        logger.trace("接受连接 {}", socket.getInetAddress());
                         new Thread(new ReceiveThread(socket)).start();
                     } catch (IOException e) {
                         // 这里是否需要 break
