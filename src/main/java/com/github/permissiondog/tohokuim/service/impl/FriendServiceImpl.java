@@ -3,11 +3,10 @@ package com.github.permissiondog.tohokuim.service.impl;
 import com.github.permissiondog.tohokuim.dao.Observer;
 import com.github.permissiondog.tohokuim.dao.impl.FriendDaoImpl;
 import com.github.permissiondog.tohokuim.entity.Friend;
-import com.github.permissiondog.tohokuim.entity.Message;
 import com.github.permissiondog.tohokuim.service.FriendService;
 
-import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Consumer;
 
@@ -30,17 +29,17 @@ public class FriendServiceImpl implements FriendService {
     }
 
     @Override
-    public Friend get(UUID id) {
+    public Optional<Friend> get(UUID id) {
         return FriendDaoImpl.getInstance().get(id);
     }
 
     @Override
-    public Friend update(Friend value) {
+    public boolean update(Friend value) {
         return FriendDaoImpl.getInstance().update(value);
     }
 
     @Override
-    public Friend remove(UUID id) {
+    public boolean remove(UUID id) {
         return FriendDaoImpl.getInstance().remove(id);
     }
 

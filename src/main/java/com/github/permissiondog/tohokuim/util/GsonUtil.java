@@ -19,6 +19,7 @@ import java.util.UUID;
 public class GsonUtil {
     public static final Gson gson = new GsonBuilder()
             .setPrettyPrinting()
+            .setLenient()
             .registerTypeAdapter(UUID.class, new TypeAdapter<UUID>() {
                 @Override
                 public void write(JsonWriter out, UUID value) throws IOException {

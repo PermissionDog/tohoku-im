@@ -1,3 +1,5 @@
 {
-  "UUID": ""
+  "UUID": "",
+  "msgPort": 23333,
+  "discoverPort": 23334
 }

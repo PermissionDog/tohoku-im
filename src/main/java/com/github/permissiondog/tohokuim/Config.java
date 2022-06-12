@@ -25,6 +25,8 @@ public class Config {
     }
 
     private volatile UUID uuid;
+    private volatile int msgPort;
+    private volatile int discoverPort;
 
     public UUID getUUID() {
         return uuid;
@@ -35,6 +37,23 @@ public class Config {
         save();
     }
 
+    public int getMsgPort() {
+        return msgPort;
+    }
+
+    public void setMsgPort(int msgPort) {
+        this.msgPort = msgPort;
+        save();
+    }
+
+    public int getDiscoverPort() {
+        return discoverPort;
+    }
+
+    public void setDiscoverPort(int discoverPort) {
+        this.discoverPort = discoverPort;
+        save();
+    }
 
     private static final Logger logger = LogManager.getLogger(Config.class);
     private static Config load() {

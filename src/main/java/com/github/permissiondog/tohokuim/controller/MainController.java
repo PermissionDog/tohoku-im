@@ -67,7 +67,7 @@ public class MainController {
                     }
                 });
                 var selectedFriendUUID = (UUID) self.getUserData();
-                var selectedFriend = FriendServiceImpl.getInstance().get(selectedFriendUUID);
+                var selectedFriend = FriendServiceImpl.getInstance().get(selectedFriendUUID).orElseThrow();
 
                 showContent(selectedFriend);
 

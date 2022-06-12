@@ -1,6 +1,7 @@
 package com.github.permissiondog.tohokuim;
 
 import com.github.permissiondog.tohokuim.controller.MainController;
+import com.github.permissiondog.tohokuim.service.impl.MessageServiceImpl;
 import com.github.permissiondog.tohokuim.service.impl.ProfileServiceImpl;
 import com.github.permissiondog.tohokuim.util.FileUtil;
 import javafx.application.Application;
@@ -73,6 +74,7 @@ public class TohokuIMApplication extends Application {
             Config.getInstance().setUUID(UUID.randomUUID());
         }
         initFiles();
+        MessageServiceImpl.getInstance().initNet();
         launch();
     }
 }

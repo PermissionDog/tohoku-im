@@ -38,36 +38,38 @@ public abstract class MultiDataDaoImpl<T extends Identifiable> extends BaseDaoIm
     }
 
     @Override
-    public T get(UUID id) {
+    public Optional<T> get(UUID id) {
         synchronized (this) {
-            return data.get(id);
+            return Optional.ofNullable(data.get(id));
         }
     }
 
     @Override
-    public T update(T value) {
+    public boolean update(T value) {
         synchronized (this) {
             if (!data.containsKey(value.getUUID())) {
-                return null;
+                return false;
             }
             data.put(value.getUUID(), value);
             save();
             notifyListeners();
-            return value;
+            return true;
         }
     }
 
     @Override
-    public T remove(UUID id) {
+    public boolean remove(UUID id) {
         synchronized (this) {
-            return data.remove(id);
+            return data.remove(id) != null;
         }
     }
 
     @Override
     public T add(T value) {
         synchronized (this) {
-            value.setUUID(UUID.randomUUID());
+            if (value.getUUID() == null) {
+                value.setUUID(UUID.randomUUID());
+            }
             data.put(value.getUUID(), value);
             notifyOnAddListeners(value);
             return value;
