@@ -79,6 +79,7 @@ public class MainController {
                     return;
                 }
                 insertNewMessage(message);
+                scrollToEnd();
             });
         });
     }
@@ -134,6 +135,11 @@ public class MainController {
             case Received -> insertReceivedMessage(message.getMessage());
         }
     }
+    private void scrollToEnd() {
+        messagesScrollPane.applyCss();
+        messagesScrollPane.layout();
+        messagesScrollPane.setVvalue(1.0);
+    }
     private void showContent() {
 
         // 展示名字
@@ -145,6 +151,7 @@ public class MainController {
         // 展示消息
         messagesVBox.getChildren().clear();
         MessageServiceImpl.getInstance().getAll(selectedFriend.getUUID()).stream().sorted(Comparator.comparing(Message::getSendTime)).forEach(this::insertNewMessage);
+        scrollToEnd();
 
         contentVBox.setVisible(true);
     }
