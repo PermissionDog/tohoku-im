@@ -158,6 +158,9 @@ public class MainController {
 
     public void onSend() {
         var msg = messageTextField.getText();
+        if ("".equals(msg)) {
+            return;
+        }
         messageTextField.setText("");
         logger.info("发送消息给 {}: {}", selectedFriend.getName(), msg);
 
