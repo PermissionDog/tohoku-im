@@ -4,6 +4,7 @@ import com.github.permissiondog.tohokuim.Constant;
 import com.github.permissiondog.tohokuim.entity.Friend;
 import com.github.permissiondog.tohokuim.service.FriendService;
 import com.github.permissiondog.tohokuim.service.impl.FriendServiceImpl;
+import com.github.permissiondog.tohokuim.service.impl.MessageServiceImpl;
 import io.github.palexdev.materialfx.controls.MFXRectangleToggleNode;
 import io.github.palexdev.materialfx.controls.MFXScrollPane;
 import io.github.palexdev.materialfx.utils.ScrollUtils;
@@ -102,7 +103,7 @@ public class MainController {
 
         // 展示消息
         messagesVBox.getChildren().clear();
-        friend.getMessages().forEach(message -> {
+        MessageServiceImpl.getInstance().getAll(friend.getUUID()).forEach(message -> {
             var sendTime = message.getSendTime();
             if (sendTime.toLocalDate().equals(LocalDate.now())) {
                 insertTimeMessage(sendTime.format(Constant.TIME_FORMATTER));

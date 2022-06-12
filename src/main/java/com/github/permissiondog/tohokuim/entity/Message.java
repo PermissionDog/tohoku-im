@@ -3,11 +3,14 @@ package com.github.permissiondog.tohokuim.entity;
 import com.github.permissiondog.tohokuim.entity.enumeration.MessageDirection;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
-public class Message {
+public class Message implements Identifiable {
     private LocalDateTime sendTime;
     private String message;
     private MessageDirection direction;
+    private UUID session;
+    private UUID uuid;
 
     public LocalDateTime getSendTime() {
         return sendTime;
@@ -31,5 +34,22 @@ public class Message {
 
     public void setDirection(MessageDirection direction) {
         this.direction = direction;
+    }
+
+    public UUID getSession() {
+        return session;
+    }
+
+    public void setSession(UUID session) {
+        this.session = session;
+    }
+
+    @Override
+    public UUID getUUID() {
+        return uuid;
+    }
+
+    public void setUUID(UUID uuid) {
+        this.uuid = uuid;
     }
 }

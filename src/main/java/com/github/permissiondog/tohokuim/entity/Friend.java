@@ -7,7 +7,6 @@ public class Friend implements Identifiable {
     private UUID uuid;
     private String name;
     private String signature;
-    private List<Message> messages;
 
     public UUID getUUID() {
         return uuid;
@@ -33,11 +32,4 @@ public class Friend implements Identifiable {
         this.signature = signature;
     }
 
-    public List<Message> getMessages() {
-        return messages;
-    }
-
-    public void setMessages(List<Message> messages) {
-        this.messages = messages;
-    }
 }

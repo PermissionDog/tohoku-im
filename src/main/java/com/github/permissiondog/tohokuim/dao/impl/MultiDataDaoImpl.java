@@ -7,6 +7,7 @@ import com.github.permissiondog.tohokuim.util.FileUtil;
 import com.github.permissiondog.tohokuim.util.GsonUtil;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 public abstract class MultiDataDaoImpl<T extends Identifiable> extends BaseDaoImpl<T> implements MultiDataDao<T> {
 
@@ -66,10 +67,9 @@ public abstract class MultiDataDaoImpl<T extends Identifiable> extends BaseDaoIm
     @Override
     public T add(T value) {
         synchronized (this) {
-            if (data.containsKey(value.getUUID())) {
-                return null;
-            }
+            value.setUUID(UUID.randomUUID());
             data.put(value.getUUID(), value);
+            notifyOnAddListeners(value);
             return value;
         }
     }
@@ -79,5 +79,14 @@ public abstract class MultiDataDaoImpl<T extends Identifiable> extends BaseDaoIm
         synchronized (this) {
             return List.copyOf(data.values());
         }
+    }
+
+    private final List<Consumer<T>> onAddListeners = new LinkedList<>();
+    @Override
+    public void registerOnAddListener(Consumer<T> listener) {
+        onAddListeners.add(listener);
+    }
+    private void notifyOnAddListeners(T newValue) {
+        onAddListeners.forEach(c -> c.accept(newValue));
     }
 }

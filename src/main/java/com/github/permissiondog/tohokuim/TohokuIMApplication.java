@@ -63,6 +63,7 @@ public class TohokuIMApplication extends Application {
         }
         writeResource(Constant.DEFAULT_PROFILE, Constant.PROFILE_FILE);
         writeResource(Constant.DEFAULT_FRIENDS, Constant.FRIENDS_FILE);
+        writeResource(Constant.DEFAULT_MESSAGES, Constant.MESSAGES_FILE);
     }
 
     public static void main(String[] args) {
