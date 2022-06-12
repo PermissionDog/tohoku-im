@@ -17,6 +17,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.apache.logging.log4j.LogManager;
@@ -147,7 +149,7 @@ public class MainController {
         contentVBox.setVisible(true);
     }
 
-    public void onSend(ActionEvent actionEvent) {
+    public void onSend() {
         var msg = messageTextField.getText();
         messageTextField.setText("");
         logger.info("发送消息给 {}: {}", selectedFriend.getName(), msg);
@@ -163,5 +165,12 @@ public class MainController {
                logger.warn("无法发送消息", e);
            }
        }).start();
+    }
+
+    public void onKeyReleased(KeyEvent keyEvent) {
+        if (!keyEvent.getCode().equals(KeyCode.ENTER)) {
+            return;
+        }
+        onSend();
     }
 }
