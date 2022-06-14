@@ -3,6 +3,7 @@ package com.github.permissiondog.tohokuim.net;
 import com.github.permissiondog.tohokuim.entity.Message;
 import com.github.permissiondog.tohokuim.entity.enumeration.MessageDirection;
 import com.github.permissiondog.tohokuim.net.event.ReceiveMessageEvent;
+import com.github.permissiondog.tohokuim.service.impl.FriendServiceImpl;
 import com.github.permissiondog.tohokuim.service.impl.MessageServiceImpl;
 import com.github.permissiondog.tohokuim.util.GsonUtil;
 import com.google.gson.Gson;
@@ -63,6 +64,9 @@ public class ReceiveThread implements Runnable{
 
         logger.trace("添加消息");
         MessageServiceImpl.getInstance().add(msg);
+        logger.trace("更新 IP 地址");
+        FriendServiceImpl.getInstance().updateFriendAddress(event.getSender(), socket.getInetAddress());
+
 
         logger.trace("回复消息");
         reply("ok");
