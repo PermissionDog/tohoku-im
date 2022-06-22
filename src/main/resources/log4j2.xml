@@ -4,15 +4,7 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" charset="UTF-8"/>
         </Console>
-        <RollingFile name="RollingFile" fileName="logs/app.log"
-                     filePattern="logs/?{date:yyyy-MM}/app-%d{yyyy-MM-dd}-%i.log.gz">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" charset="UTF-8"/>
 
-            <Policies>
-                <TimeBasedTriggeringPolicy/>
-                <SizeBasedTriggeringPolicy size="250 MB"/>
-            </Policies>
-        </RollingFile>
     </Appenders>
     <Loggers>
         <Root level="trace">
