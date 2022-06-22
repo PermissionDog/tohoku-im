@@ -75,7 +75,7 @@ public class MainController {
 
         MessageServiceImpl.getInstance().registerOnAddListener(message -> {
             Platform.runLater(() -> {
-                if (!message.getSession().equals(selectedFriend.getUUID())) {
+                if (selectedFriend == null || !message.getSession().equals(selectedFriend.getUUID())) {
                     return;
                 }
                 insertNewMessage(message);
