@@ -33,6 +33,9 @@ public class TohokuIMApplication extends Application {
             editProfileStage.showAndWait();
         }
 
+
+        MessageServiceImpl.getInstance().initNet();
+
         var mainStage = new Stage();
         var mainStageLoader = new FXMLLoader(TohokuIMApplication.class.getResource("view/main.fxml"));
         var mainScene = new Scene(
@@ -75,7 +78,6 @@ public class TohokuIMApplication extends Application {
             Config.getInstance().setUUID(UUID.randomUUID());
         }
         initFiles();
-        MessageServiceImpl.getInstance().initNet();
         launch();
     }
 }
