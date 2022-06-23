@@ -15,6 +15,14 @@ public abstract class MultiDataDaoImpl<T extends Identifiable> extends BaseDaoIm
     private final List<Observer> observerList = new LinkedList<>();
 
     @Override
+    public void registerListener(Observer observer) {
+        observerList.add(observer);
+    }
+
+    private void notifyListeners() {
+        observerList.forEach(Observer::onChange);
+    }
+    @Override
     public void load() {
         data = new HashMap<>();
         var json = FileUtil.readFile(getFileName());
@@ -26,15 +34,6 @@ public abstract class MultiDataDaoImpl<T extends Identifiable> extends BaseDaoIm
     public void save() {
         var json = GsonUtil.gson.toJson(data.values(), getType());
         FileUtil.writeFile(getFileName(), json);
-    }
-
-    @Override
-    public void registerListener(Observer observer) {
-        observerList.add(observer);
-    }
-
-    private void notifyListeners() {
-        observerList.forEach(Observer::onChange);
     }
 
     @Override
