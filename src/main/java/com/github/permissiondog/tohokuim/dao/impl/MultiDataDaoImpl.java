@@ -64,6 +64,7 @@ public abstract class MultiDataDaoImpl<T extends Identifiable> extends BaseDaoIm
                 return false;
             }
             save();
+            notifyListeners();
             return true;
         }
     }
