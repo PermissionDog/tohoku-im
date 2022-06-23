@@ -77,6 +77,7 @@ public abstract class MultiDataDaoImpl<T extends Identifiable> extends BaseDaoIm
             data.put(value.getUUID(), value);
             save();
             notifyOnAddListeners(value);
+            notifyListeners();
             return value;
         }
     }
